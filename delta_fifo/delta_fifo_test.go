@@ -34,6 +34,7 @@ func TestDeltaFIFO_pop(t *testing.T) {
 	f := cache.NewDeltaFIFO(testFifoObjectKeyFunc, nil)
 
 	f.Add(mkFifoObj("foo", 10))
+	f.Update(mkFifoObj("baz", 10))
 	_, err := f.Pop(customPopFunc)
 	if err != nil {
 		t.Fatalf("unexpected error: %v", err)

@@ -18,16 +18,8 @@ const (
 
 func customPopFunc(obj interface{}) error {
 	deltas := obj.(cache.Deltas)
-	if deltas[len(deltas)-1].Type == Added {
+	if deltas[len(deltas)-1].Type != Added {
 		fmt.Println("Added obj : " + deltas[len(deltas)-1].Object.(testFifoObject).name)
-		return nil
-	}
-	if deltas[len(deltas)-1].Type == Updated {
-		fmt.Println("Updated obj : " + deltas[len(deltas)-1].Object.(testFifoObject).name)
-		return nil
-	}
-	if deltas[len(deltas)-1].Type == Deleted {
-		fmt.Println("Deleted obj : " + deltas[len(deltas)-1].Object.(testFifoObject).name)
 		return nil
 	}
 	return cache.ErrRequeue{Err: nil}
